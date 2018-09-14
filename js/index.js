@@ -1,0 +1,4 @@
+$(function() {
+    $("#codeSection").sortable();
+});
+
