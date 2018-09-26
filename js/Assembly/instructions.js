@@ -5,27 +5,28 @@ const InstructionCodes = {
     STR = 2,
 
     ADD = 3,
-    SUB = 4,
-    MPY = 5,
-    DIV = 6,
     
-    AND = 7,
-    OR = 8,
-    NOT = 9,
-    XOR = 10,
+    AND = 4,
+    OR = 5,
+    NOT = 6,
+    XOR = 7,
 
-    JMP = 11//,
-    // JE = 12,
-    // JL = 13,
-    // JG = 14,
-    // JLE = 15,
-    // JGE = 16,
-    // HLT = 17
+    JMP = 8,
+    JE = 9,
+    JL = 10,
+    JG = 11,
+    JLE = 12,
+    JGE = 13,
+    
+    HLT = 14
 };
 
 class Instruction {
     constructor(code, operand) {
         this.code = code;
         this.operand = operand;
+
+        this.isLogic = code >= 4 && code <= 7;
+        this.isArithmetic = code == 3;
     }
 }
