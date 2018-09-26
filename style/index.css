@@ -1,0 +1,86 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    background-color: whitesmoke;
+}
+
+.header {
+    display: flex;
+    padding-top: 20px;
+}
+
+table {
+    width: 100%;
+    text-align: left;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 20px;
+    color: darkslategray;
+}
+
+.monitor {
+    width: 50%;
+    height: 200px;
+}
+
+fieldset {
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid darkslategray;
+}
+
+#ramArea {
+    width: 15%;
+}
+
+#monitorArea {
+    width: 85%;
+}
+
+#code {
+    height: 100%;
+    width: 100%;
+}
+
+legend {
+
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: monospace;
+    border: 1px solid gray;
+    font-size: 20px;
+    font-weight: bold;
+    color: darkslategray;
+}
+
+
+.led-display {
+    position: absolute;
+    border-radius: 10px;
+    bottom: 20px;
+    right: 20px;
+    width: 448px;
+    height: 224px;
+    background-color: mediumseagreen;
+    border: 1px solid seagreen;
+    box-shadow: 1px 3px 10px darkgreen, 0 0 10px black;
+}
+
+.led-point {
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    margin: 2px;
+    float: left;
+}
+
+.led-off {
+    background-color: mediumseagreen;
+}
+
+.led-on {
+    background-color: lightgreen;
+    box-shadow: 0 0 20px #fff, 
+                0 0 40px lightgreen;
+}
