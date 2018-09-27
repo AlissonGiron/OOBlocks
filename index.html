@@ -21,23 +21,89 @@
     </div>
     <button type="button" onclick="Execute()">Execute</button>
 
-    <div class="led-display"></div>
-</body>
+    <div style="display: flex;">
 
-<template id="instructionSrc">
-    <div class="instruction-block">
-        <span class="instruction-desc"></span>
+        <div class="col-6">
+        </div>
+
+        <div class="col-6" style="position: relative; background-color: #eeeeee; padding-left: 5px; border-left: 5px solid darkgrey;">
+            <div class="flags">
+                <div>
+                    <div class="led-on">ZF</div>
+                </div>
+                <div>
+                    <div class="led-on">SF</div>
+                </div>
+                <div>
+                    <div class="led-on">OF</div>
+                </div>
+                <div>
+                    <div class="led-on">GF</div>
+                </div>
+                <div>
+                    <div class="led-off">LF</div>
+                </div>
+            </div>
+
+            <div class="buttons-container">
+                <button>Executar</button><button disabled>Próximo Passo</button>
+            </div>
+
+            <div class="AC">AC: 20</div>
+            <div class="ram-container">
+                <p>RAM</p>
+                <table>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Valor</th>
+                    </tr>
+                    <tr>
+                        <td>Posição</td>
+                        <td>Valor</td>
+                    </tr>
+                    <tr>
+                        <td>Posição</td>
+                        <td>Valor</td>
+                    </tr>
+                    <tr>
+                        <td>Posição</td>
+                        <td>Valor</td>
+                    </tr>
+                    <tr>
+                        <td>Posição</td>
+                        <td>Valor</td>
+                    </tr>
+                    <tr>
+                        <td>Posição</td>
+                        <td>Valor</td>
+                    </tr>
+                    <tr>
+                        <td>Posição</td>
+                        <td>Valor</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="led-display"></div>
+        </div>
     </div>
-</template>
 
-<template id="btnDelete">
-    <button type="button" class="btn-delete">
-        <span>X</span>
-    </button>
-</template>
+    <template id="instructionSrc">
+        <div class="instruction-block">
+            <span class="instruction-desc"></span>
+        </div>
+    </template>
 
-<template id="inputInstructionValue">
-    <input type="number" min="0" max="65535" value="0"/>
-</template>
+    <template id="btnDelete">
+        <button type="button" class="btn-delete">
+            <span>X</span>
+        </button>
+    </template>
+
+    <template id="inputInstructionValue">
+        <input type="number" min="0" max="65535" value="0" />
+    </template>
+
+</body>
 
 </html>

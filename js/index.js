@@ -1,5 +1,3 @@
-var message = "Alisson Henrique dos Santos Giron";
-
 var matrix = [];
 var letters = [];
 
