@@ -1,26 +1,59 @@
 var matrix = [];
 var letters = [];
+var numbers = [];
+
+var message = [];
 
 $(function () {
-
+    
     $(".instructions").hide();
     Initialize();
-
-    letters.push(new Letter(5, 10, "111101111101101111"));
-    letters.push(new Letter(5, 15, "111100110100100111"));
-    letters.push(new Letter(5, 20, "100100100100100111"));
-    letters.push(new Letter(5, 25, "111100100100100111"));
-    letters.push(new Letter(5, 30, "101101111101101101"));
-    letters.push(new Letter(5, 35, "111010010010010111"));
-    letters.push(new Letter(5, 40, "111101101101101111"));
-    letters.push(new Letter(5, 45, "111101101111110101"));
+    
+    numbers.push("111101101101101101111"); // 0
+    numbers.push("110010010010010010111"); // 1
+    numbers.push("111001001111100100111"); // 2
+    numbers.push("111001001111001001111"); // 3
+    numbers.push("101101101111001001001"); // 4
+    numbers.push("111100100111001001111"); // 5
+    numbers.push("111100100111101101111"); // 6
+    numbers.push("111001001001001001001"); // 7
+    numbers.push("111101101111101101111"); // 8
+    numbers.push("111101101111001001111"); // 9
 
     setInterval(GenerateMatrix, 200);
 });
 
-function Letter(x, y, pos) {
-    this.x = x;
-    this.y = y;
+function setDisplay(mes)
+{
+    var displayChars = [];
+
+    mes = mes.toString();
+
+    for(i = 0; i < mes.length; i++)
+    {
+        displayChars.push(numbers[parseInt(mes[i])]);
+    }
+
+    AdjustMessage(displayChars);
+}
+
+function clearDisplay() {
+    message = [];
+}
+
+function AdjustMessage(mes) {
+    
+    message = [];
+
+    for(i = 0; i < mes.length; i++)
+    {
+        message.push(new Number(32 + (i * 5), mes[i]));
+    }
+}
+
+function Number(coluna, pos)
+{
+    this.coluna = coluna;
     this.pos = pos;
 }
 
@@ -35,7 +68,7 @@ function DrawMatrix() {
                 $(".led-display").append("<span class='led-point led-off'></span>");
             }
         }
-    })
+    });
 }
 
 function GenerateMatrix() {
@@ -51,21 +84,21 @@ function GenerateMatrix() {
         matrix.push(row);
     }
 
-    letters.forEach(o => {
+    message.forEach((o) => {
         for (i = 0; i < o.pos.length; i++) {
             var pos = o.pos[i];
 
-            var row = (parseInt(i / 3)) + o.x;
-            var col = ((i % 3)) + o.y;
+            var row = (parseInt(i / 3)) + 5;
+            var col = ((i % 3)) + o.coluna;
 
             if (pos === "1") {
                 matrix[row][col] = "ON";
             }
         }
 
-        o.y--;
+        o.coluna--;
 
-        if (o.y == -3) o.y = 40;
+        if(o.coluna <= 0) { o.coluna = 32; }
     });
 
     DrawMatrix();
@@ -175,8 +208,8 @@ function Execute() {
     }
 
     if (errors.length > 0) {
-        $('#analyzer-output').text(errors);
-        return;
+        console.log(errors);
+        return errors;
     }
 
     interpreter.interpret(instructions, (curState) => {
