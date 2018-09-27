@@ -166,8 +166,8 @@ function Execute() {
     }
 
     if (errors.length > 0) {
-        console.log(errors);
-        return errors;
+        $('#analyzer-output').text(errors);
+        return;
     }
 
     interpreter.interpret(instructions, (curState) => {
