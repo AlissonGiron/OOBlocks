@@ -1,10 +1,7 @@
-var message = "Alisson Henrique dos Santos Giron";
-
 var matrix = [];
 var letters = [];
 
 $(function() {
-
     letters.push(new Letter(5, 10, "010101101111101101"));
     letters.push(new Letter(5, 15, "100100100100100111"));
     letters.push(new Letter(5, 19, "010010010010010010"));
@@ -12,6 +9,8 @@ $(function() {
     letters.push(new Letter(5, 29, "111100111001001111"));
     letters.push(new Letter(5, 34, "111101101101101111"));
     letters.push(new Letter(5, 39, "101111111101101101"));
+
+    //GenerateMatrix();
 
     setInterval(GenerateMatrix, 200);
 });

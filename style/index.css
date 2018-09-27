@@ -54,12 +54,11 @@ legend {
     color: darkslategray;
 }
 
-
 .led-display {
     position: absolute;
     border-radius: 10px;
     bottom: 20px;
-    right: 20px;
+    right: calc(50% - 224px);
     width: 448px;
     height: 224px;
     background-color: mediumseagreen;
@@ -83,4 +82,92 @@ legend {
     background-color: lightgreen;
     box-shadow: 0 0 20px #fff, 
                 0 0 40px lightgreen;
+}
+
+.col-6 {
+    width: 50%;
+    height: 100vh;
+}
+
+.flags {
+    display: flex;
+    margin-right: 10px;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 15px;
+    background-color: darkslategray;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom: 10px solid slategray;
+    border-left: 10px solid darkslateblue;
+    border-right: 10px solid darkslateblue;
+}
+
+.flags > div {
+    width: 100%;
+    line-height: 50px;
+    padding: 5px;
+}
+
+.flags div > div {
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    color: white;
+    font-size: 20px;
+}
+
+.flags div > div.led-off {
+    background-color: red;
+    box-shadow: 0 0 20px #fff, 
+                0 0 40px red;
+}
+
+.buttons-container {
+    margin-right: 10px;
+}
+
+.buttons-container button {
+    width: 100%;
+    margin: 5px;
+    padding: 10px;
+    box-shadow: none;
+    background-color: gainsboro;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px grey;
+    color: dimgray;
+}
+
+.buttons-container button:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+}
+
+.ram-container {
+    max-height: 150px;
+    overflow: auto;
+    border: 1px solid gray;
+    margin-right: 5px;
+}
+
+.ram-container p {    
+    margin: 2px;
+    text-align: center;
+    color: darkslategrey;
+    font-weight: 600;
+    border-bottom: 1px solid darkslategrey;
+}
+
+table {
+    border: 0;
+}
+
+.AC {
+    background-color: darkslategrey;
+    text-align: center;
+    line-height: 40px; 
+    color: white;
+    margin-right: 5px;
 }
