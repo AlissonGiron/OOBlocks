@@ -181,7 +181,13 @@ function Execute() {
 
     interpreter.interpret(instructions, (curState) => {
         // chamado na execução de cada instrução
+        setLED($("#led-ZF"), curState.ZF);
+        setLED($("#led-GF"), curState.GF);
+        setLED($("#led-OF"), curState.OF);
+        setLED($("#led-SF"), curState.SF);
+        setLED($("#led-LF"), curState.LF);
 
+        $(".AC").html("AC = " + curState.AC);
     });
 }
 
@@ -201,7 +207,10 @@ function setLED(led, value)
 
     if(value) 
     {
-        led.addClass();
+        led.addClass("led-on");
+    }
+    else {
+        led.addClass("led-off");
     }
 }
 
