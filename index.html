@@ -1,19 +1,43 @@
 <!doctype html>
 <html>
-    <head>
-        <title>OOBlocks</title>
 
-        <link rel="stylesheet" href="style/index.css">
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/jquery-ui.js"></script>
-        <script src="js/index.js"></script>
-    </head>
-    <body>
+<head>
+    <title>OOBlocks</title>
 
-        <div class="">
+    <link rel="stylesheet" href="style/index.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
 
-            
-        </div>
-        <div class="led-display"></div>   
-    </body>
+
+    <script src="js/Assembly/instructions.js"></script>
+    <script src="js/Assembly/interpreter.js"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+    <div id="codingArea">
+        <div id="code" class="code-drag"></div>
+        <div id="instructionPicker" class="code-drag"></div>
+    </div>
+    <button type="button" onclick="Execute()">Execute</button>
+
+    <div class="led-display"></div>
+</body>
+
+<template id="instructionSrc">
+    <div class="instruction-block">
+        <span class="instruction-desc"></span>
+    </div>
+</template>
+
+<template id="btnDelete">
+    <button type="button" class="btn-delete">
+        <span>X</span>
+    </button>
+</template>
+
+<template id="inputInstructionValue">
+    <input type="number" min="0" max="65535" value="0"/>
+</template>
+
 </html>

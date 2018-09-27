@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     padding: 0;
     margin: 0;
     background-color: whitesmoke;
@@ -81,6 +82,52 @@ legend {
 
 .led-on {
     background-color: lightgreen;
-    box-shadow: 0 0 20px #fff, 
-                0 0 40px lightgreen;
+    box-shadow: 0 0 20px #fff,
+        0 0 40px lightgreen;
+}
+
+#codingArea {
+    display: flex;
+    width: 30vw;
+
+    font-family: Consolas, 'Lucida Console', monospace;
+    font-size: 24pt;
+}
+
+#codingArea input {
+    font-family: Consolas, 'Lucida Console', monospace;
+    font-size: 24pt;
+    width: 10ch;
+    text-align: right;
+    margin-top: 4px;
+    float: right;
+    border-radius: 10px;
+}
+
+#code {
+    background-color: blue;
+    min-height: 30px;
+}
+
+#instructionPicker {
+    background-color: rebeccapurple;
+}
+
+.btn-delete {
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bolder;
+    padding: 10px 20px;
+    font-size: 28px;
+    box-shadow: 2px 3px 2px black;
+    border: none;
+}
+
+.instruction-block {
+    padding: 5px 25px;
+    border-radius: 10px;
+    border: 3px solid black;
+    box-shadow: 1px 3px 10px black, 0 0 10px black;
+    color: white;
 }
