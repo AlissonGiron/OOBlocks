@@ -158,6 +158,15 @@ function Execute() {
         instructions.push(new Instruction(code, operand));
     });
 
+    $("#ram-table tr").each(function(index, row) {
+        if(index == 0) return;
+
+        var rowValue = $(row).children();
+
+        interpreter.state.RAM[parseInt(rowValue[0].innerText)] = parseInt(rowValue[1].innerText);
+    });
+    
+
     if (instructions.length > 0) {
         let lastInstruction = instructions[instructions.length - 1];
         if (lastInstruction.code != InstructionCodes.HLT) {
@@ -172,11 +181,28 @@ function Execute() {
 
     interpreter.interpret(instructions, (curState) => {
         // chamado na execução de cada instrução
+
     });
 }
 
 function AddToRam() {
-    
+    var pos = $("#ram-pos").val();
+    var value = $("#ram-value").val();
+
+    if(!pos || !value) return;
+
+    AddRamValue(pos, value);
+}
+
+function setLED(led, value)
+{
+    led.removeClass("led-on");
+    led.removeClass("led-off");
+
+    if(value) 
+    {
+        led.addClass();
+    }
 }
 
 
