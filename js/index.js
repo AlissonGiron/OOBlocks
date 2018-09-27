@@ -237,12 +237,22 @@ function Build() {
 function ExecuteNext() {
     if (!currentInterpreter) return;
 
+    var lines = $($("#codingArea").children()[0]).children();
+    $(lines).removeClass("curState");
+
     if (!currentInterpreter.executeNext()) {
         alert('Programa finalizado');
         return;
     }
 
     let curState = currentInterpreter.state;
+
+    if(curState.RAM[4092])
+        setDisplay(curState.RAM[4092]);
+
+    
+
+    $(lines[curState.PC - 1]).addClass("curState");
 
     setLED($("#led-ZF"), curState.ZF);
     setLED($("#led-GF"), curState.GF);
