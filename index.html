@@ -15,77 +15,54 @@
 </head>
 
 <body>
-    <div id="codingArea">
-        <div id="code" class="code-drag"></div>
-        <div id="instructionPicker" class="code-drag"></div>
-    </div>
-    <button type="button" onclick="Execute()">Execute</button>
+    
 
     <div style="display: flex;">
 
         <div class="col-6">
+                <div id="codingArea">
+                        <div id="code" class="code-drag"></div>
+                        <div id="instructionPicker" class="code-drag"></div>
+                    </div>
+                    <button type="button" onclick="Execute()">Execute</button>
         </div>
 
-        <div class="col-6" style="position: relative; background-color: #eeeeee; padding-left: 5px; border-left: 5px solid darkgrey;">
-            <div class="flags">
-                <div>
-                    <div class="led-on">ZF</div>
-                </div>
-                <div>
-                    <div class="led-on">SF</div>
-                </div>
-                <div>
-                    <div class="led-on">OF</div>
-                </div>
-                <div>
-                    <div class="led-on">GF</div>
-                </div>
-                <div>
-                    <div class="led-off">LF</div>
-                </div>
-            </div>
+                <div class="col-6" style="position: relative; background-color: #eeeeee; padding-left: 5px; border-left: 5px solid darkgrey;">
+                    <div class="flags">
+                        <div>
+                            <div class="led-on">ZF</div>    
+                        </div>
+                        <div>
+                            <div class="led-on">SF</div>    
+                        </div>
+                        <div>
+                            <div class="led-on">OF</div>    
+                        </div>
+                        <div>
+                            <div class="led-on">GF</div>    
+                        </div>
+                        <div>
+                            <div class="led-off">LF</div>    
+                        </div>
+                    </div>
 
-            <div class="buttons-container">
-                <button>Executar</button><button disabled>Próximo Passo</button>
-            </div>
+                    <div class="buttons-container">
+                        <button>Executar</button><button disabled>Próximo Passo</button>
+                    </div>
 
-            <div class="AC">AC: 20</div>
-            <div class="ram-container">
-                <p>RAM</p>
-                <table>
-                    <tr>
-                        <th>Posição</th>
-                        <th>Valor</th>
-                    </tr>
-                    <tr>
-                        <td>Posição</td>
-                        <td>Valor</td>
-                    </tr>
-                    <tr>
-                        <td>Posição</td>
-                        <td>Valor</td>
-                    </tr>
-                    <tr>
-                        <td>Posição</td>
-                        <td>Valor</td>
-                    </tr>
-                    <tr>
-                        <td>Posição</td>
-                        <td>Valor</td>
-                    </tr>
-                    <tr>
-                        <td>Posição</td>
-                        <td>Valor</td>
-                    </tr>
-                    <tr>
-                        <td>Posição</td>
-                        <td>Valor</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="led-display"></div>
-        </div>
+                    <div class="AC">AC: 20</div>
+                    <div class="ram-container">
+                        <p>RAM</p>
+                        <table id="ram-table">
+                            <tr>
+                                <th>Posição</th>
+                                <th>Valor</th>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="led-display"></div>   
+                </div>
     </div>
 
     <template id="instructionSrc">
