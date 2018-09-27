@@ -219,7 +219,7 @@ function Analyze() {
 
 function Build() {
     let instructions = Analyze();
-    if (!instructions) return;
+    if (!instructions) return false;
 
     let interpreter = new AssemblyInterpreter(instructions);
 
@@ -232,13 +232,18 @@ function Build() {
     });
 
     currentInterpreter = interpreter;
+    
+    return true;
 }
 
 function ExecuteNext() {
-    if (!currentInterpreter) return;
+    if (!currentInterpreter) {
+        if (!Build()) return;
+    }
 
     if (!currentInterpreter.executeNext()) {
         alert('Programa finalizado');
+        currentInterpreter = null;
         return;
     }
 
