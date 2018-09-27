@@ -3,6 +3,7 @@ var letters = [];
 var numbers = [];
 
 var message = [];
+var currentInterpreter = null;
 
 $(function () {
     
@@ -169,11 +170,15 @@ function MakeEditable(block) {
     }
 }
 
-function Execute() {
+// Analisa as instruções
+// Em caso de erro, exibe o erro na tela e retorna false
+// Caso OK, retorna as instruções
+function Analyze() {
     let instructions = [];
-    let interpreter = new AssemblyInterpreter();
-
     let errors = [];
+    let interpreter = null;
+
+    $('#analyzer-output').html('Analisando...<br/>');
 
     function addError(line, instructionCode, error) {
         errors.push("Linha " + (line + 1) + " [" + Object.keys(InstructionCodes).find(key => InstructionCodes[key] == parseInt(instructionCode)) + "]: " + error);
@@ -191,15 +196,6 @@ function Execute() {
         instructions.push(new Instruction(code, operand));
     });
 
-    $("#ram-table tr").each(function(index, row) {
-        if(index == 0) return;
-
-        var rowValue = $(row).children();
-
-        interpreter.state.RAM[parseInt(rowValue[0].innerText)] = parseInt(rowValue[1].innerText);
-    });
-    
-
     if (instructions.length > 0) {
         let lastInstruction = instructions[instructions.length - 1];
         if (lastInstruction.code != InstructionCodes.HLT) {
@@ -208,41 +204,71 @@ function Execute() {
     }
 
     if (errors.length > 0) {
-        console.log(errors);
-        return errors;
+
+        errors.forEach((err) => {
+            $('#analyzer-output').append(err + '<br/>');
+        });
+        $('#analyzer-output').append('Concluído');
+
+        return false;
     }
 
-    interpreter.interpret(instructions, (curState) => {
-        // chamado na execução de cada instrução
-        setLED($("#led-ZF"), curState.ZF);
-        setLED($("#led-GF"), curState.GF);
-        setLED($("#led-OF"), curState.OF);
-        setLED($("#led-SF"), curState.SF);
-        setLED($("#led-LF"), curState.LF);
+    $('#analyzer-output').append('Concluído');
+    return instructions;
+}
 
-        $(".AC").html("AC = " + curState.AC);
+function Build() {
+    let instructions = Analyze();
+    if (!instructions) return;
+
+    let interpreter = new AssemblyInterpreter(instructions);
+
+    $("#ram-table tr").each(function (index, row) {
+        if (index == 0) return;
+
+        var rowValue = $(row).children();
+
+        interpreter.state.RAM[parseInt(rowValue[0].innerText)] = parseInt(rowValue[1].innerText);
     });
+
+    currentInterpreter = interpreter;
+}
+
+function ExecuteNext() {
+    if (!currentInterpreter) return;
+
+    if (!currentInterpreter.executeNext()) {
+        alert('Programa finalizado');
+        return;
+    }
+
+    let curState = currentInterpreter.state;
+
+    setLED($("#led-ZF"), curState.ZF);
+    setLED($("#led-GF"), curState.GF);
+    setLED($("#led-OF"), curState.OF);
+    setLED($("#led-SF"), curState.SF);
+    setLED($("#led-LF"), curState.LF);
+
+    $(".AC").html("AC = " + curState.AC);
 }
 
 function AddToRam() {
     var pos = $("#ram-pos").val();
     var value = $("#ram-value").val();
 
-    if(!pos || !value) return;
+    if (!pos || !value) return;
 
     AddRamValue(pos, value);
 }
 
-function setLED(led, value)
-{
+function setLED(led, value) {
     led.removeClass("led-on");
     led.removeClass("led-off");
 
-    if(value) 
-    {
-        led.addClass("led-on");
-    }
-    else {
+    if (value) {
+        led.addClass('led-on');
+    } else {
         led.addClass("led-off");
     }
 }

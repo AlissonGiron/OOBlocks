@@ -15,71 +15,70 @@
 </head>
 
 <body>
-    
+
 
     <div style="display: flex;">
 
         <div class="col-6" style="overflow: auto; background-color: #212225;">
-                <div id="codingArea">
-                    <div id="code" class="code-drag"></div>
-                    <div id="analyzer-output"></div>
+            <div id="codingArea">
+                <div id="code" class="code-drag"></div>
+                <div id="analyzer-output"></div>
 
-                    <div class="instructions">
-                        <div class="instructions-header">
-                                <button type="button" class="btn-delete" onclick="CloseInstructions()">
-                                        <span>X</span>
-                                    </button>
-                            Instruções</div>
-                        <div id="instructionPicker" class="code-drag"></div>
-                    </div>
-
-                    <button class="open-instructions" onclick="OpenInstructions()">Abrir Menu de Instruções</button>
+                <div class="instructions">
+                    <div class="instructions-header">
+                        <button type="button" class="btn-delete" onclick="CloseInstructions()">
+                            <span>X</span>
+                        </button>
+                        Instruções</div>
+                    <div id="instructionPicker" class="code-drag"></div>
                 </div>
-                    <!-- <button type="button" onclick="Execute()">Execute</button> -->
+
+                <button class="open-instructions" onclick="OpenInstructions()">Abrir Menu de Instruções</button>
+            </div>
         </div>
 
-                <div class="col-6" style="position: relative; background-color: #eeeeee; padding-left: 5px; border-left: 5px solid darkgrey;">
-                    <div class="flags">
-                        <div>
-                            <div id="led-ZF" class="led-off">ZF</div>    
-                        </div>
-                        <div>
-                            <div id="led-SF" class="led-off">SF</div>    
-                        </div>
-                        <div>
-                            <div id="led-OF" class="led-off">OF</div>    
-                        </div>
-                        <div>
-                            <div id="led-GF" class="led-off">GF</div>    
-                        </div>
-                        <div>
-                            <div id="led-LF" class="led-off">LF</div>    
-                        </div>
-                    </div>
-
-                    <div class="AC">AC: 0</div>
-
-                    <div class="buttons-container">
-                        <button onclick="Execute()">Executar</button>
-                        <div class="add-ram">
-                                <input id="ram-pos" type="text" placeholder="Posição de Memória">
-                                <input id="ram-value" type="text" placeholder="Valor">
-                                <button onclick="AddToRam()">Adicionar na RAM</button>
-                        </div>
-                    </div>
-
-                    <div class="ram-container">
-                        <p>RAM</p>
-                        <table id="ram-table">
-                            <tr>
-                                <th>Posição</th>
-                                <th>Valor</th>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    <div class="led-display"></div>   
+        <div class="col-6" id="container-2">
+            <div class="flags">
+                <div>
+                    <div id="led-ZF" class="led-off">ZF</div>
                 </div>
+                <div>
+                    <div id="led-SF" class="led-off">SF</div>
+                </div>
+                <div>
+                    <div id="led-OF" class="led-off">OF</div>
+                </div>
+                <div>
+                    <div id="led-GF" class="led-off">GF</div>
+                </div>
+                <div>
+                    <div id="led-LF" class="led-off">LF</div>
+                </div>
+            </div>
+
+            <div class="AC">AC: 0</div>
+
+            <div class="buttons-container">
+                <button onclick="ExecuteNext()">Executar</button>
+                <div class="add-ram">
+                    <input id="ram-pos" type="text" placeholder="Posição de Memória">
+                    <input id="ram-value" type="text" placeholder="Valor">
+                    <button onclick="AddToRam()">Adicionar na RAM</button>
+                </div>
+            </div>
+
+            <div class="ram-container">
+                <p>RAM</p>
+                <table id="ram-table">
+                    <tr>
+                        <th>Posição</th>
+                        <th>Valor</th>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="led-display"></div>
+        </div>
     </div>
 
     <template id="instructionSrc">
