@@ -56,11 +56,17 @@
                         </div>
                     </div>
 
+                    <div class="AC">AC: 20</div>
+
                     <div class="buttons-container">
-                        <button>Executar</button><button disabled>Próximo Passo</button>
+                        <button>Executar</button>
+                        <div class="add-ram">
+                                <input type="text" placeholder="Posição de Memória">
+                                <input type="text" placeholder="Valor">
+                                <button onclick="AddToRam()">Adicionar na RAM</button>
+                        </div>
                     </div>
 
-                    <div class="AC">AC: 20</div>
                     <div class="ram-container">
                         <p>RAM</p>
                         <table id="ram-table">

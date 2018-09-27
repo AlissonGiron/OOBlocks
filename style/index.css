@@ -260,8 +260,19 @@ table {
 
 .AC {
     background-color: darkslategrey;
+    border-radius: 10px;
+    margin: 10px;
     text-align: center;
     line-height: 40px;
     color: white;
     margin-right: 5px;
+}
+
+.add-ram {
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.add-ram input {
+    width: 40%;
 }
