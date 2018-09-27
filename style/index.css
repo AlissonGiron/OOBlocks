@@ -87,10 +87,11 @@ legend {
 
 #codingArea {
     display: flex;
-    width: 45vw;
-
     font-family: Consolas, 'Lucida Console', monospace;
     font-size: 24pt;
+    background-color: #1a1b1f;
+    text-align: center;
+    flex-direction: column;
 }
 
 #codingArea input {
@@ -100,35 +101,81 @@ legend {
     text-align: right;
     margin-top: 4px;
     float: right;
-    border-radius: 10px;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: none;
 }
 
 #code {
-    background-color: blue;
-    min-height: 30px;
+    background-color: #36383f;
+    min-height: 50px;
+    padding: 10px 0;
+}
+
+.instructions {
+    position: absolute;
+    transition: .5s all linear;
+    width: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: darkorchid;
+}
+
+.instructions.open {
+    width: 50vw;
 }
 
 #instructionPicker {
+    padding: 5px;
+    overflow: auto;
+    max-height: calc(100vh - 98px);
+}
+
+#instructionPicker div {
     background-color: rebeccapurple;
 }
 
-.btn-delete {
-    border-radius: 10px;
+.instructions-header {
+    background-color: darkorchid;
+    color: white;
+    padding: 10px;
+}
+
+.instructions-header .btn-delete {
+    background-color: darkorchid;
+    color: white;
+    border: 3px solid white;
+}
+
+.open-instructions {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    height: 100px;
+    font-size: 20px;
+    border: 0;
     background-color: red;
     color: white;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0px 3px 8px black;
+}
+
+.btn-delete {
+    background-color: #36383f;
+    color: red;
     font-weight: bolder;
-    padding: 10px 20px;
+    padding: 5px 50px;
     font-size: 28px;
-    box-shadow: 2px 3px 2px black;
-    border: none;
+    border: 3px solid red;
 }
 
 .instruction-block {
-    padding: 5px 25px;
-    border-radius: 10px;
-    border: 3px solid black;
-    box-shadow: 1px 3px 10px black, 0 0 10px black;
     color: white;
+    margin-right: 10px;
+    padding: 10px 5px;
 }
 
 .col-6 {

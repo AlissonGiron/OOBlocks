@@ -2,6 +2,8 @@ var matrix = [];
 var letters = [];
 
 $(function () {
+
+    $(".instructions").hide();
     Initialize();
 
     letters.push(new Letter(5, 10, "111101111101101111"));
@@ -171,4 +173,20 @@ function Execute() {
     interpreter.interpret(instructions, (curState) => {
         // chamado na execução de cada instrução
     });
+}
+
+
+
+function OpenInstructions() {
+    $(".open-instructions").hide();
+
+    $(".instructions").addClass("open");
+    $(".instructions").show();
+}
+
+function CloseInstructions() {
+    $(".open-instructions").show();
+
+    $(".instructions").removeClass("open");
+    $(".instructions").hide();
 }

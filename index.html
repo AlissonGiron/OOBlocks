@@ -19,12 +19,22 @@
 
     <div style="display: flex;">
 
-        <div class="col-6">
+        <div class="col-6" style="overflow: auto; background-color: #212225;">
                 <div id="codingArea">
-                        <div id="code" class="code-drag"></div>
+                    <div id="code" class="code-drag"></div>
+
+                    <div class="instructions">
+                        <div class="instructions-header">
+                                <button type="button" class="btn-delete" onclick="CloseInstructions()">
+                                        <span>X</span>
+                                    </button>
+                            Instruções</div>
                         <div id="instructionPicker" class="code-drag"></div>
                     </div>
-                    <button type="button" onclick="Execute()">Execute</button>
+
+                    <button class="open-instructions" onclick="OpenInstructions()">Abrir Menu de Instruções</button>
+                </div>
+                    <!-- <button type="button" onclick="Execute()">Execute</button> -->
         </div>
 
                 <div class="col-6" style="position: relative; background-color: #eeeeee; padding-left: 5px; border-left: 5px solid darkgrey;">
@@ -72,7 +82,7 @@
     </template>
 
     <template id="btnDelete">
-        <button type="button" class="btn-delete">
+        <button type="button" class="btn-delete" style="float: left;">
             <span>X</span>
         </button>
     </template>
