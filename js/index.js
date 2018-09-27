@@ -125,12 +125,32 @@ function Execute() {
     let instructions = [];
     let interpreter = new AssemblyInterpreter();
 
+    let errors = [];
+
+    function addError(line, instructionCode, error) {
+        errors.push("Linha " + line + " [" + InstructionCodes[instructionCode] +"]: " + error);
+    }
+
     $('#code > .instruction-block').each((i, v) => {
         let code = $(v).attr('instruction-code');
-        let operator = $(v).find('input').val();
+        let operand = $(v).find('input').val();
+        let instr = new Instruction(code, operand);
 
-        instructions.push(new Instruction(code, operator));
+        if (instr.hasOperand && isNaN(parseInt(operand))) {
+            addError(i, code, "Operando da instrução não pode ser vazio");
+        }
+
+        instructions.push(new Instruction(code, operand));
     });
+
+    let lastInstruction = instructions[instructions.length - 1];
+    if (lastInstruction.code != InstructionCodes.HLT) {
+        errors.push(instructions.length - 1, lastInstruction.code, "A última instrução do programa deve ser um HLT");
+    }
+
+    if (errors.length > 0) {
+        return errors;
+    }
 
     interpreter.interpret(instructions, (curState) => {
         // chamado na execução de cada instrução
