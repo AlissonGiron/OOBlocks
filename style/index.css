@@ -261,9 +261,9 @@ table {
 .AC {
     background-color: darkslategrey;
     border-radius: 10px;
-    margin: 10px;
+    /* margin: 10px; */
     text-align: center;
-    line-height: 40px;
+    /* line-height: 40px; */
     color: white;
     margin-right: 5px;
 }
