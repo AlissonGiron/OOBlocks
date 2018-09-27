@@ -141,9 +141,6 @@ function Execute() {
     let instructions = [];
     let interpreter = new AssemblyInterpreter();
 
-    interpreter.state.RAM[0] = 356;
-    interpreter.state.RAM[1] = 1;
-
     $('#code > .instruction-block').each((i, v) => {
         let code = $(v).attr('instruction-code');
         let operator = $(v).find('input').val();
