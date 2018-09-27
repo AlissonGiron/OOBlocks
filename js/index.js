@@ -12,7 +12,7 @@ $(function () {
     letters.push(new Letter(5, 35, "111010010010010111"));
     letters.push(new Letter(5, 40, "111101101101101111"));
     letters.push(new Letter(5, 45, "111101101111110101"));
-    
+
     setInterval(GenerateMatrix, 200);
 });
 
@@ -29,8 +29,7 @@ function DrawMatrix() {
         for (j = 0; j < 32; j++) {
             if (row[j] == "ON") {
                 $(".led-display").append("<span class='led-point led-on'></span>");
-            }
-            else {
+            } else {
                 $(".led-display").append("<span class='led-point led-off'></span>");
             }
         }
@@ -70,14 +69,12 @@ function GenerateMatrix() {
     DrawMatrix();
 }
 
-function AddRamValue(pos, value)
-{
-    function getHtml(p, v)
-    {
-        return  "<tr>" +
-                    "<td>" + p + "</td>" +
-                    "<td>" + v + "</td>" +
-                "</tr>";
+function AddRamValue(pos, value) {
+    function getHtml(p, v) {
+        return "<tr>" +
+            "<td>" + p + "</td>" +
+            "<td>" + v + "</td>" +
+            "</tr>";
     }
 
     var ram = $("#ram-table");
@@ -126,7 +123,7 @@ function FillInstructions() {
 
 function MakeEditable(block) {
     let btnDelete = $($('#btnDelete').html());
-    btnDelete.on('click', function(e) {
+    btnDelete.on('click', function (e) {
         $(e.target).closest('.instruction-block').remove();
     })
 
@@ -144,7 +141,7 @@ function Execute() {
     let errors = [];
 
     function addError(line, instructionCode, error) {
-        errors.push("Linha " + line + " [" + InstructionCodes[instructionCode] +"]: " + error);
+        errors.push("Linha " + (line + 1) + " [" + Object.keys(InstructionCodes).find(key => InstructionCodes[key] == parseInt(instructionCode)) + "]: " + error);
     }
 
     $('#code > .instruction-block').each((i, v) => {
@@ -159,12 +156,15 @@ function Execute() {
         instructions.push(new Instruction(code, operand));
     });
 
-    let lastInstruction = instructions[instructions.length - 1];
-    if (lastInstruction.code != InstructionCodes.HLT) {
-        errors.push(instructions.length - 1, lastInstruction.code, "A última instrução do programa deve ser um HLT");
+    if (instructions.length > 0) {
+        let lastInstruction = instructions[instructions.length - 1];
+        if (lastInstruction.code != InstructionCodes.HLT) {
+            addError(instructions.length - 1, lastInstruction.code, "A última instrução do programa deve ser um HLT");
+        }
     }
 
     if (errors.length > 0) {
+        console.log(errors);
         return errors;
     }
 
@@ -172,4 +172,3 @@ function Execute() {
         // chamado na execução de cada instrução
     });
 }
-
