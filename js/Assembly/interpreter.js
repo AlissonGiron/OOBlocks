@@ -21,9 +21,11 @@ class AssemblyInterpreter {
 
     interpret(instructions, stepByStepCallback) {
 
-        while (instructions[this.state.PC].code !== InstructionCodes.HLT) {
-            execInstruction(this.state, instructions[this.state.PC]);
-            stepByStepCallback();
+        if (instructions.length == 0) return;
+
+        while (this.state.PC < instructions.length && instructions[this.state.PC].code !== InstructionCodes.HLT) {
+            execInstruction(this.state, instructions[this.state.PC++]);
+            stepByStepCallback(this.state);
         }
     }
 }
@@ -34,7 +36,7 @@ function execInstruction(state, instruction) {
     switch (instruction.code) {
         case InstructionCodes.NOP:
         case InstructionCodes.HLT:
-            return;
+            break;
 
         case InstructionCodes.LDA: state.AC = state.RAM[instruction.operand]; break;
         case InstructionCodes.STR: state.RAM[instruction.operand] = state.AC; break;
@@ -43,7 +45,7 @@ function execInstruction(state, instruction) {
 
         case InstructionCodes.AND: state.AC &= state.RAM[instruction.operand]; break;
         case InstructionCodes.OR: state.AC |= state.RAM[instruction.operand]; break;
-        case InstructionCodes.NOT: state.AC = !state.AC; break;
+        case InstructionCodes.NOT: state.AC = ~state.AC; break;
         case InstructionCodes.XOR: state.AC ^= state.RAM[instruction.operand]; break;
 
         case InstructionCodes.JMP: state.PC = instruction.operand; break;
@@ -52,7 +54,7 @@ function execInstruction(state, instruction) {
     if (instruction.isLogic || instruction.isArithmetic) {
         state.ZF = state.AC === 0;
         state.SF = state.AC < 0; // Também funciona: (state.AC >> 31) & 1 == 1 
-        state.OF = (oldAC >= 0 && operand >= 0 && state.AC < 0) || (oldAC < 0 && operand < 0 && state.AC >= 0);
+        state.OF = (oldAC >= 0 && instruction.operand >= 0 && state.AC < 0) || (oldAC < 0 && instruction.operand < 0 && state.AC >= 0);
         state.GF = state.SF === state.OF && !state.ZF;
         state.LF = state.SF !== state.OF;
     }

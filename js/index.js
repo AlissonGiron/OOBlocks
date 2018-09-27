@@ -12,6 +12,18 @@ $(function() {
 
     //GenerateMatrix();
 
+$(function () {
+    Initialize();
+
+    letters.push(new Letter(5, 10, "111101111101101111"));
+    letters.push(new Letter(5, 15, "111100110100100111"));
+    letters.push(new Letter(5, 20, "100100100100100111"));
+    letters.push(new Letter(5, 25, "111100100100100111"));
+    letters.push(new Letter(5, 30, "101101111101101101"));
+    letters.push(new Letter(5, 35, "111010010010010111"));
+    letters.push(new Letter(5, 40, "111101101101101111"));
+    letters.push(new Letter(5, 45, "111101101111110101"));
+    
     setInterval(GenerateMatrix, 200);
 });
 
@@ -21,15 +33,9 @@ function Letter(x, y, pos) {
     this.pos = pos;
 }
 
-function DrawMatrix()
-{
     $(".led-display").html("");
 
     matrix.forEach(row => {
-        for (j = 0; j < 32; j++)
-        {
-            if(row[j] == "ON")
-            {
                 $(".led-display").append("<span class='led-point led-on'></span>");
             }
             else {
@@ -39,16 +45,10 @@ function DrawMatrix()
     })
 }
 
-function GenerateMatrix ()
-{
     matrix = [];
 
-    for(i = 0; i < 16; i++)
-    {
         var row = [];
 
-        for (j = 0; j < 32; j++)
-        {
             row.push("OFF");
         }
 
@@ -56,24 +56,17 @@ function GenerateMatrix ()
     }
 
     letters.forEach(o => {
-        for(i = 0; i < o.pos.length; i++)
-        {
             var pos = o.pos[i];
-    
+
             var row = (parseInt(i / 3)) + o.x;
             var col = ((i % 3)) + o.y;
-    
-            if(pos === "1")
-            {
+
                 matrix[row][col] = "ON";
             }
         }
-    
+
         o.y--;
-    
-        if(o.y == -3) o.y = 40;
     });
-    
     DrawMatrix();
 }
 
