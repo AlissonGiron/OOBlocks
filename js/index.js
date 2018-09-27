@@ -76,3 +76,21 @@ function GenerateMatrix ()
     
     DrawMatrix();
 }
+
+function AddRamValue(pos, value)
+{
+    function getHtml(p, v)
+    {
+        return  "<tr>" +
+                    "<td>" + p + "</td>" +
+                    "<td>" + v + "</td>" +
+                "</tr>";
+    }
+
+    var ram = $("#ram-table");
+
+    ram.append(getHtml(pos, value));
+}
+
+
+
