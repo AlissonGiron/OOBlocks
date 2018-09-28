@@ -72,10 +72,15 @@ function execInstruction(state, instruction) {
             break;
     }
 
+    let curRAM = state.RAM[instruction.operand];
+    if (instruction.code == InstructionCodes.SUB) {
+        curRAM = -1 * curRAM;
+    }
+
     if (instruction.isLogic || instruction.isArithmetic) {
         state.ZF = state.AC === 0;
         state.SF = state.AC < 0; // Também funciona: (state.AC >> 31) & 1 == 1 
-        state.OF = (oldAC >= 0 && instruction.operand >= 0 && state.AC < 0) || (oldAC < 0 && instruction.operand < 0 && state.AC >= 0);
+        state.OF = (oldAC >= 0 && curRAM >= 0 && state.AC < 0) || (oldAC < 0 && curRAM < 0 && state.AC >= 0);
         state.GF = state.SF === state.OF && !state.ZF;
         state.LF = state.SF !== state.OF;
     }
