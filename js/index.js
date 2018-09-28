@@ -5,11 +5,13 @@ var numbers = [];
 var message = [];
 var currentInterpreter = null;
 
+var ramTableRemoveBtn = "<td><button class='btn-delete-sm' type='button' onclick='$(event.target).parent().parent().remove()'>X</td>";
+
 $(function () {
-    
+
     $(".instructions").hide();
     Initialize();
-    
+
     numbers.push("111101101101101101111"); // 0
     numbers.push("110010010010010010111"); // 1
     numbers.push("111001001111100100111"); // 2
@@ -24,16 +26,14 @@ $(function () {
     setInterval(GenerateMatrix, 200);
 });
 
-function setDisplay(mes)
-{
+function setDisplay(mes) {
     var displayChars = [];
 
     mes = Math.abs(mes);
 
     mes = mes.toString();
 
-    for(i = 0; i < mes.length; i++)
-    {
+    for (i = 0; i < mes.length; i++) {
         displayChars.push(numbers[parseInt(mes[i])]);
     }
 
@@ -45,17 +45,15 @@ function clearDisplay() {
 }
 
 function AdjustMessage(mes) {
-    
+
     message = [];
 
-    for(i = 0; i < mes.length; i++)
-    {
+    for (i = 0; i < mes.length; i++) {
         message.push(new Number(32 + (i * 5), mes[i]));
     }
 }
 
-function Number(coluna, pos)
-{
+function Number(coluna, pos) {
     this.coluna = coluna;
     this.pos = pos;
 }
@@ -101,7 +99,9 @@ function GenerateMatrix() {
 
         o.coluna--;
 
-        if(o.coluna <= 0) { o.coluna = 32; }
+        if (o.coluna <= 0) {
+            o.coluna = 32;
+        }
     });
 
     DrawMatrix();
@@ -110,6 +110,7 @@ function GenerateMatrix() {
 function AddRamValue(pos, value) {
     function getHtml(p, v) {
         return "<tr>" +
+            ramTableRemoveBtn +
             "<td>" + p + "</td>" +
             "<td>" + v + "</td>" +
             "</tr>";
@@ -230,16 +231,16 @@ function Build() {
 
         var rowValue = $(row).children();
 
-        interpreter.state.RAM[parseInt(rowValue[0].innerText)] = parseInt(rowValue[1].innerText);
+        interpreter.state.RAM[parseInt(rowValue[1].innerText)] = parseInt(rowValue[2].innerText);
     });
 
     currentInterpreter = interpreter;
-    
+
     return true;
 }
 
 function ExecuteNext() {
-    if (!currentInterpreter) {
+    if (currentInterpreter == null) {
         if (!Build()) return;
     }
 
@@ -255,10 +256,14 @@ function ExecuteNext() {
 
     let curState = currentInterpreter.state;
 
-    if(curState.RAM[4092] != undefined)
-        setDisplay(curState.RAM[4092]);
+    $('#ram-table tr:not(:first-child)').remove();
 
-    
+    curState.RAM.forEach(r => {
+        $('#ram-table').append('<tr>' + ramTableRemoveBtn + '<td>' + curState.RAM.indexOf(r) + '</td><td>' + r + '</td></tr>');
+    });
+
+    if (curState.RAM[4092] != undefined)
+        setDisplay(curState.RAM[4092]);
 
     $(lines[curState.PC - 1]).addClass("curState");
 

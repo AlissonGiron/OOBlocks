@@ -186,6 +186,15 @@ legend {
     border: 3px solid red;
 }
 
+.btn-delete-sm {
+    color: red;
+    font-weight: bolder;
+    padding: 3px 0;
+    width: 60px;
+    font-size: 24px;
+    border: 3px solid red;
+}
+
 .instruction-block {
     color: white;
     margin-right: 10px;
