@@ -249,6 +249,7 @@ function ExecuteNext() {
     if (!currentInterpreter.executeNext()) {
         alert('Programa finalizado');
         currentInterpreter = null;
+        clearDisplay();
         return;
     }
 
