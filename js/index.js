@@ -28,6 +28,8 @@ function setDisplay(mes)
 {
     var displayChars = [];
 
+    mes = Math.abs(mes);
+
     mes = mes.toString();
 
     for(i = 0; i < mes.length; i++)
@@ -241,13 +243,24 @@ function ExecuteNext() {
         if (!Build()) return;
     }
 
+    var lines = $($("#codingArea").children()[0]).children();
+    $(lines).removeClass("curState");
+
     if (!currentInterpreter.executeNext()) {
         alert('Programa finalizado');
         currentInterpreter = null;
+        clearDisplay();
         return;
     }
 
     let curState = currentInterpreter.state;
+
+    if(curState.RAM[4092] != undefined)
+        setDisplay(curState.RAM[4092]);
+
+    
+
+    $(lines[curState.PC - 1]).addClass("curState");
 
     setLED($("#led-ZF"), curState.ZF);
     setLED($("#led-GF"), curState.GF);

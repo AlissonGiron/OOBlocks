@@ -306,3 +306,9 @@ table {
     box-sizing: border-box;
     overflow: auto;
 }
+
+div.instruction-block.ui-sortable-handle.curState {
+    border: 3px solid red;
+    margin: 5px;
+    height: 50px;
+}
