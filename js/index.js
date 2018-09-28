@@ -28,6 +28,8 @@ function setDisplay(mes)
 {
     var displayChars = [];
 
+    mes = Math.abs(mes);
+
     mes = mes.toString();
 
     for(i = 0; i < mes.length; i++)
@@ -252,7 +254,7 @@ function ExecuteNext() {
 
     let curState = currentInterpreter.state;
 
-    if(curState.RAM[4092])
+    if(curState.RAM[4092] != undefined)
         setDisplay(curState.RAM[4092]);
 
     
